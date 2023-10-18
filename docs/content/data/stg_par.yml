@@ -1,0 +1,48 @@
+---
+# This is the YAML Database file for all allowed parameters within the namelist "stg_par"
+
+compute_velocity_seeds_local:
+  category: Numerics
+  type: L
+  default:
+    value: .F.
+  description:
+    short: Switch to decide whether velocity seeds are computed locally or distributed over several processes.
+    long: |
+      If *.F.*, the computation of the velocity seeds is done in parallel by multiple processes.
+      This requires additional MPI communication to gather the calculated seeds on the respective processes responsible for the boundaries.
+      This option is especially useful for large length scales where the computational effort can become huge (when computation of velocity seeds requires more time than MPI communication).
+      If *.T.*, velocity seeds are computed only locally and no MPI communication is necessary. This performs better when the turbulent length scales are small (when MPI communication requires more time than computation).
+
+dt_stg_adjust:
+  category: General Settings
+  type: R
+  default:
+    value: 1800.0
+  si-unit: s
+  description:
+    short: Time interval for adjusting turbulence statistics.
+    long: |
+      The turbulence statistics define the amplitude and sign of imposed correlations.
+      [dt_stg_adjust](#stg_par--dt_stg_adjust) only comes into effective if turbulence statistics are parametrized, i.e. if they are not read from the ASCII input file [STG_PROFILES](https://palm.muk.uni-hannover.de/trac/attachment/wiki/doc/app/iofiles/STG_PROFILES). Furthermore, [dt_stg_adjust](#stg_par--dt_stg_adjust) is only relevant in the case of a daily cycle, where the strength of turbulence and boundary-layer depth changes in time.
+
+dt_stg_call:
+  category: General Settings
+  type: R
+  default:
+    value: 0.0
+  si-unit: s
+  description:
+    short: Time interval for calling synthetic turbulence generator.
+    long: |
+      Per default, the turbulence generator is called every time step (called every 0.0 seconds). Increasing [dt_stg_call](#stg_par--dt_stg_call) may help to reduce computational time.
+
+switch_off_module:
+  category: General Settings
+  type: L
+  default:
+    value: .F.
+  description:
+    short: Switch to turn on/off the module.
+    long: |
+      If *.T.*, the synthetic turbulence generator is not activated even if the namelist is present in the parameter file.

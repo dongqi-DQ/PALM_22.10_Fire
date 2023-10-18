@@ -1,0 +1,2 @@
+-r share/palmtest/requirements.txt
+-r share/palm_cti/requirements.txt
