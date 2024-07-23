@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/706890266.svg)](https://zenodo.org/doi/10.5281/zenodo.12798252)
+
 # PALM_22.10_Fire
 PALM 22.10 version with the temperature fix module for fire experiments.  
 
